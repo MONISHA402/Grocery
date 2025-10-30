@@ -1,0 +1,908 @@
+/* Basic Reset and Variables */
+:root {
+    --primary-color: #388e3c; /* A deep green for TopFood */
+    --secondary-color: #fdd835; /* Yellow/Gold accent */
+    --text-dark: #333;
+    --text-light: #666;
+    --bg-light: #f9f9f9;
+    --border-light: #ddd;
+    --modal-bg-overlay: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    --modal-form-bg: #fff;
+    --social-google: #db4437;
+    --social-facebook: #3b5998;
+    --social-instagram: #e1306c;
+    --social-twitter: #1da1f2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+    background-color: #fff; /* Light background for the main page */
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* --- Header Styling --- */
+.main-header {
+    background-color: white;
+    border-bottom: 1px solid #eee;
+}
+
+.logo img {
+    height: 80px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--primary-color);
+    border-radius: 25px; /* More rounded search bar */
+    overflow: hidden;
+    flex-grow: 1; /* Allow search bar to take available space */
+    max-width: 700px; /* Limit its max width */
+    margin: 0 20px;
+    background-color: var(--primary-color);
+}
+
+.search-bar input {
+    border: none;
+    padding: 10px 15px;
+    flex-grow: 1;
+    outline: none;
+    background-color: white;
+    font-size: 1em;
+}
+
+.search-bar .fas {
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+/* --- Auth Buttons (Register) --- */
+.auth-buttons .register-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: background-color 0.2s;
+    margin-right: 80px;
+}
+
+.auth-buttons .register-btn:hover {
+    background-color: #2b7030;
+}
+/* --- User Actions (After Login) --- */
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 35px;
+}
+
+.user-actions.hidden {
+    display: none;
+}
+
+.profile {
+    width: 55px;
+    height: 55px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.user-actions .icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.9rem;
+    color: var(--text-dark);
+}
+/* --- Main Navigation --- */
+.main-nav {
+    max-width: 1200px;
+    margin-left: 350px;
+    padding-left: 15px;
+    margin-top: 10px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+}
+
+.nav-links a {
+    font-weight: 600;
+    padding: 35px 0;
+    transition: color 0.2s;
+    font-size: 1.5rem;
+    color: #000;
+}
+
+.nav-links a:hover {
+    color: black;
+}
+
+.nav-links .active {
+    color: var(--primary-color);
+   
+}
+
+/*  Modal (Register/Login & Success)  */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: var(--modal-bg-overlay);
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+
+.modal.show {
+    display: flex; /* Show using flexbox for centering */
+}
+
+.modal-content {
+    background-color: var(--modal-form-bg);
+    margin: auto; /* For browsers that don't support align-items: center */
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 450px; /* Max width for the form */
+    position: relative;
+    text-align: center;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+}
+
+.modal-content.small-modal {
+    max-width: 350px; /* Smaller width for success dialog */
+    padding: 20px;
+}
+
+.close-button {
+    color: var(--text-light);
+    font-size: 28px;
+    font-weight: bold;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: var(--text-dark);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.modal-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    font-size: 2em;
+}
+
+.input-group {
+    margin-bottom: 20px;
+}
+
+.input-group input {
+    width: calc(100% - 20px);
+    padding: 12px 10px;
+    border: 1px solid var(--primary-color);
+    border-radius: 5px;
+    font-size: 1em;
+    outline: none;
+}
+
+.input-group input:focus {
+    border-color: #2b7030;
+    box-shadow: 0 0 5px rgba(56, 142, 60, 0.3);
+}
+
+.login-btn {
+    width: 100%;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 1.1em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.login-btn:hover {
+    background-color: #2b7030;
+}
+
+.forgot-password {
+    display: block;
+    margin-top: 15px;
+    color: var(--text-light);
+    font-size: 0.9em;
+}
+
+.social-separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 30px 0;
+    color: var(--text-light);
+}
+
+.social-separator::before,
+.social-separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--border-light);
+}
+
+.social-separator:not(:empty)::before {
+    margin-right: .25em;
+}
+
+.social-separator:not(:empty)::after {
+    margin-left: .25em;
+}
+
+.social-login {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.social-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    color: white;
+    font-size: 1.2em;
+    transition: transform 0.2s;
+}
+
+.social-icon:hover {
+    transform: translateY(-3px);
+}
+
+.social-icon.google { background-color: var(--social-google); }
+.social-icon.facebook { background-color: var(--social-facebook); }
+.social-icon.instagram { background-color: var(--social-instagram); }
+.social-icon.twitter { background-color: var(--social-twitter); }
+
+.signup-prompt {
+    font-size: 0.9em;
+    color: var(--text-light);
+}
+
+.signup-prompt .create-account-link {
+    font-weight: bold;
+    color: var(--primary-color);
+}
+
+/* --- Login Success Modal Specifics --- */
+#successModal .modal-content {
+    text-align: center;
+}
+
+#successModal p {
+    font-size: 1.2em;
+    margin-bottom: 20px;
+}
+
+.ok-button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.ok-button:hover {
+    background-color: #2b7030;
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .search-bar {
+        width: 100%;
+        margin: 0;
+    }
+    .main-nav {
+        padding-left: 0;
+        margin-top: 15px;
+    }
+    .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    .modal-content {
+        padding: 20px;
+    }
+    .modal-content h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+    .input-group input, .login-btn {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+    .social-login {
+        gap: 10px;
+    }
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1em;
+    }
+}
+
+
+/* Dropdown */
+.dropdown {
+  position: absolute;
+  top: 90px;
+  right: 40px;
+  width: 250px;
+  background: #4CAF50;
+  border-radius: 10px;
+  display: none;
+  color: white;
+  padding: 10px 15px;
+}
+
+.dropdown h3 {
+  border-bottom: 1px solid white;
+  padding-bottom: 5px;
+}
+
+.dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+}
+
+.dropdown ul li:hover {
+  color: #000;
+  background: #fff;
+  border-radius: 5px;
+}
+
+/* Notification Box */
+.notification-box {
+  position: absolute;
+  top: 90px;
+  right: 90px;
+  width: 450px;
+  background: #4CAF50;
+  border-radius: 15px;
+  color: white;
+  padding: 20px;
+  display: none;
+}
+
+.notification-box h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.notification-box ul {
+  list-style-type: disc;
+  margin-left: 25px;
+}
+
+.notification-box li {
+  margin: 10px 0;
+}
+
+
+/* ==================== Hero Section ==================== */
+.main{
+    background-color: white;
+}
+.hero-section {
+    background: url('../image/Supermarket Finds_ A Cart Full of Fresh Choices  Stock Photo _ Adobe Stock 1.png') no-repeat center center/cover; /* Replace with your image */
+    background-color: white;
+    color: white;
+    padding: 80px 15px;
+    text-align: left;
+}
+
+.hero-content {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.hero-content h1 {
+    font-size: 3em;
+    margin-bottom: 10px;
+}
+
+.hero-content h2 {
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.shop-now-btn {
+    background-color: green;
+    color: white;
+    padding: 10px 30px;
+    border-radius: 5px;
+    font-weight: bold;
+    display: inline-block;
+    margin-top: 20px;
+}
+/* --- Base Styles for the Component --- */
+.rating-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    padding: 40px;
+    background-color: #ffffff; /* Assuming a white/light background */
+}
+
+/* --- Avatar Stack Container --- */
+.avatar-stack {
+    display: flex;
+    position: relative;
+    /* This creates space for the overlapping effect */
+    margin-right: 50px; 
+}
+
+/* --- Individual Avatar Styling --- */
+.avatar {
+    width: 90px;
+    height: 90px;
+    border-radius: 50%;
+    overflow: hidden;
+    position: relative; /* Needed for z-index and overlap positioning */
+    border: 4px solid #ffffff; /* White border for separation/pop */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
+
+    /* The core overlapping effect */
+    margin-right: -40px; 
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* --- Plus Sign Avatar Styling --- */
+.plus-sign {
+    background-color: #ffaa00; /* Bright orange background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-color: #ffffff; 
+}
+
+.plus-sign span {
+    color: #000000; /* Black plus sign */
+    font-size: 36px;
+    font-weight: 300;
+}
+
+/* --- Rating and Trust Text Styling --- */
+.rating-info {
+    font-family: sans-serif;
+    color: #333;
+}
+
+.main-rating {
+    font-size: 1.8em;
+    font-weight: 700; /* Bold */
+    margin-bottom: 5px;
+}
+
+.trust-text {
+    font-size: 1em;
+    font-weight: 400;
+    color: #555;
+}
+
+/* ==================== Info/Choose Us Section ==================== */
+.info-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+    color: orange;
+    font-size: 1.8em;
+   
+}
+
+.info-cards {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    text-align: center;    
+    background-color: white;
+}
+
+.card {
+    width: 220px; /* Fixed width for card consistency */
+    height:280px;
+    box-shadow: 0 4px 4px 8px rgba(12, 12, 12, 0.1);
+    border-radius: 10px;
+    background-color: rgba(222, 220, 220, 0.208);
+}
+
+.icon-circle {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    margin-top:40px;
+    text-align: center;
+    /* Placeholder for actual icon/image */
+    border: 1px solid #000;
+}
+
+/* ==================== Categories Section ==================== */
+.categories-section h2 {
+    text-align: center;
+    margin-top: 60px;
+    margin-bottom: 50px;
+}
+.container{
+    background-color: white;
+}
+.category-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category-item {
+    text-align: center;
+    width: 200px;
+}
+
+.category-image {
+    width: 210px;
+    height: 210px;
+    background-color: #ddd; /* Placeholder for category image */
+    border-radius: 50%;
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+/* ==================== Deals Section ==================== */
+.deals-section {
+    padding: 40px 15px;
+    text-align: center;
+    
+}
+
+.deals-section h2 {
+    color: red; /* Highlight for deals */
+    margin-bottom: 30px;
+}
+
+.deals-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+.deal-item {
+    border-radius:20px;
+    overflow: hidden;
+    text-align: left;
+    background-color:white;
+    margin: 30px;
+}
+
+.deal-item img {
+    width: 100%;
+    height: 450px; /* Fixed height for visual consistency */
+    object-fit: cover;
+    border-radius: 25px;
+}
+
+.deal-item p {
+    padding: 10px 15px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.shop-btn {
+    margin-top: 25px;
+    display: inline-block;
+    padding: 18px 75px;
+    margin-left: 210px;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 15px;
+    font-weight: bold;
+    text-align: center;
+    font-size: 1.2rem;
+}
+
+/* ==================== Featured Products Section ==================== */
+.featured-section {
+    padding-bottom: 40px;
+}
+
+.featured-section h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.products-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-card {
+    width: 25%; /* Roughly three cards per row */
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 15px;
+    text-align: center;
+    position: relative;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: red;
+    color: white;
+    padding: 3px 8px;
+    border-radius: 3px;
+    font-size: 0.8em;
+}
+
+.product-card img {
+    width: 100%;
+    height: 280px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+.product-card .price {
+    color: red;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.product-card .actions {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    margin-top: 10px;
+}
+
+.add-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+/* ==================== FAQ Section ==================== */
+.faq-section {
+    padding: 40px 15px;
+    border-top: 1px solid #ddd;
+}
+
+.faq-item {
+    border-bottom: 1px solid #ddd;
+    padding: 15px 0;
+    cursor: pointer;
+}
+
+.faq-item h3 {
+    display: flex;
+    margin-left: 420px;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 1.7rem;
+   
+}
+
+.faq-item .answer {
+    padding: 10px 0; 
+    margin-left: 420px;
+    font-size: 1.5rem;
+    color: var(--text-light);
+    /* In a real implementation, this would be toggled with JavaScript */
+    /* display: none; */ 
+}
+
+.contact-support p {
+    margin-top: 10px;
+    font-size: 1.5rem;
+    margin-left: 420px;
+}
+/* footer */
+.footer {
+    background-color: #f39c12;
+    color: black;
+    padding: 40px 60px 20px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+/* Left Section */
+.footer-left {
+    flex: 1;
+    min-width: 250px;
+    position: relative;
+}
+
+.footer-logo {
+    width: 90px;
+}
+
+.footer-left h2 {
+    margin: 10px 0;
+    color: #2c3e50;
+}
+
+.footer-left span {
+    font-size: 14px;
+    color: #2e8b42;
+}
+
+.footer-left .follow {
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    background: #fff;
+    color: black;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 22px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: #2e8b42;
+    color: #fff;
+}
+
+.footer-image {
+    width: 120px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Footer Links */
+.footer-links {
+    display: flex;
+    flex: 2;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    min-width: 500px;
+}
+
+.footer-links div h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.footer-links a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    margin: 8px 0;
+    font-size: 15px;
+}
+
+.footer-links a:hover {
+    color: #2e8b42;
+}
+
+/* Contact Info */
+.footer-links div p {
+    margin: 8px 0;
+}
+
+/* Bottom */
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    padding-top: 15px;
+    font-size: 15px;
+}
+
+.footer-bottom a {
+    color: black;
+    text-decoration: none;
+    margin: 0 5px;
+    font-weight: 600;
+}
+
+.footer-bottom a:hover {
+    color: #2e8b42;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+    .footer-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .footer-links {
+        justify-content: center;
+    }
+
+    .footer-image {
+        margin: 20px auto;
+    }
+}

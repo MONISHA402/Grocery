@@ -1,0 +1,874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Choose Payment</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  
+  <style>
+/* Basic Reset and Variables */
+:root {
+    --primary-color: #388e3c; /* A deep green for TopFood */
+    --secondary-color: #fdd835; /* Yellow/Gold accent */
+    --text-dark: #333;
+    --text-light: #666;
+    --bg-light: #f9f9f9;
+    --border-light: #ddd;
+    --modal-bg-overlay: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    --modal-form-bg: #fff;
+    --social-google: #db4437;
+    --social-facebook: #3b5998;
+    --social-instagram: #e1306c;
+    --social-twitter: #1da1f2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+    background-color: #f8f8f8; /* Light background for the main page */
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* --- Header Styling --- */
+.main-header {
+    background-color: white;
+    border-bottom: 1px solid #eee;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--primary-color);
+    border-radius: 25px; /* More rounded search bar */
+    overflow: hidden;
+    flex-grow: 1; /* Allow search bar to take available space */
+    max-width: 500px; /* Limit its max width */
+    margin: 0 20px;
+    background-color: var(--primary-color);
+}
+
+.search-bar input {
+    border: none;
+    padding: 10px 15px;
+    flex-grow: 1;
+    outline: none;
+    background-color: white;
+    font-size: 1em;
+}
+
+.search-bar .fas {
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+/* --- Auth Buttons (Register) --- */
+.auth-buttons .register-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s;
+}
+
+.auth-buttons .register-btn:hover {
+    background-color: #2b7030;
+}
+/* --- User Actions (After Login) --- */
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-actions.hidden {
+    display: none;
+}
+
+.profile {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.user-actions .icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.3em;
+    color: var(--text-dark);
+}
+/* --- Main Navigation --- */
+.main-nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 15px;
+    margin-top: 10px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 35px;
+}
+
+.nav-links a {
+    font-weight: 500;
+    font-size: 1.5rem;
+    padding: 5px 0;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links .active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .search-bar {
+        width: 100%;
+        margin: 0;
+    }
+    .main-nav {
+        padding-left: 0;
+        margin-top: 15px;
+    }
+    .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    .modal-content {
+        padding: 20px;
+    }
+    .modal-content h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+    .input-group input, .login-btn {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+    .social-login {
+        gap: 10px;
+    }
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1em;
+    }
+}
+
+/* .profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+} */
+
+/* Dropdown */
+.dropdown {
+  position: absolute;
+  top: 90px;
+  right: 40px;
+  width: 250px;
+  background: #4CAF50;
+  border-radius: 10px;
+  display: none;
+  color: white;
+  padding: 10px 15px;
+}
+
+.dropdown h3 {
+  border-bottom: 1px solid white;
+  padding-bottom: 5px;
+}
+
+.dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+}
+
+.dropdown ul li:hover {
+  color: #000;
+  background: #fff;
+  border-radius: 5px;
+}
+
+/* Notification Box */
+.notification-box {
+  position: absolute;
+  top: 90px;
+  right: 90px;
+  width: 450px;
+  background: #4CAF50;
+  border-radius: 15px;
+  color: white;
+  padding: 20px;
+  display: none;
+}
+
+.notification-box h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.notification-box ul {
+  list-style-type: disc;
+  margin-left: 25px;
+}
+
+.notification-box li {
+  margin: 10px 0;
+}
+   
+/* Progress Bar */
+.progress-bar {
+  margin-top: 50px;
+  margin-left: 250px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+  background: #35a053;
+  color: white;
+  border-radius: 10px;
+  padding: 10px;
+  width: 60%;
+  height:120px;
+  margin-bottom: 90px;
+  font-size: 1.7rem;
+}
+
+.progress-bar .step {
+  position: relative;
+  font-weight: 500;
+}
+
+.progress-bar .step.active::before {
+  content: "●";
+  color: white;
+  margin-right: 5px;
+}
+/* item wishlist */
+.wishlist-container {
+  width: 90%;
+  margin: 0 auto;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+}
+
+thead {
+  background: #35a053;
+  color: white;
+}
+
+th, td {
+  padding: 12px;
+  text-align: center;
+  border-bottom: 1px solid #ccc;
+  font-size: 1.4rem;
+}
+
+td img {
+  width: 160px;
+  height: 160px;
+  border-radius: 8px;
+}
+
+.instock {
+  color: orange;
+  font-weight: 600;
+  margin-right: 10px;
+}
+
+/* Add to Cart Button */
+.btn {
+  background: white;
+  border: 2px solid #35a053;
+  color: #35a053;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: 0.3s;
+  font-size: 1.4rem;
+}
+
+.btn:hover {
+  background: #35a053;
+  color: white;
+}
+/* payment */
+
+
+
+.payment-section {
+  display: flex;
+  gap: 40px;
+  align-items: flex-start;
+}
+
+.order-summary {
+  background: white;
+  border: 1px solid #ccc;
+  padding: 15px 25px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+/* choose payment */
+.choose-payment {
+  position: relative;
+}
+
+#chooseBtn {
+  background: none;
+  border: none;
+  font-size: 18px;
+  font-weight: 500;
+  cursor: pointer;
+  padding: 8px 12px;
+}
+
+#paymentOptions {
+  list-style: none;
+  margin: 10px 0 0;
+  padding: 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  width: 200px;
+  /* Fix 1: Ensures the dropdown positions relative to its parent */
+  position: absolute; 
+  /* Fix 2: Ensures the dropdown appears above other content */
+  z-index: 10; 
+}
+
+#paymentOptions li {
+  padding: 10px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+}
+
+#paymentOptions li:hover {
+  background-color: #f0f0f0;
+}
+
+#paymentOptions img {
+  width: 25px;
+  height: 25px;
+}
+
+.hidden {
+  display: none;
+}
+
+.payment-details {
+  margin-top: 40px;
+  background: #3eb65b;
+  color: white;
+  padding: 25px;
+  border-radius: 10px;
+  text-align: center;
+  width: 350px;
+}
+
+.payment-icons img {
+  width: 50px;
+  height: 40px;
+  margin: 10px;
+  background: white;
+  padding: 6px;
+  border-radius: 5px;
+}
+
+.details-btn {
+  margin-top: 10px;
+  padding: 10px 25px;
+  background: black;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+/* footer */
+.footer {
+    background-color: #f39c12;
+    color: black;
+    padding: 40px 60px 20px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+/* Left Section */
+.footer-left {
+    flex: 1;
+    min-width: 250px;
+    position: relative;
+}
+
+.footer-logo {
+    width: 90px;
+}
+
+.footer-left h2 {
+    margin: 10px 0;
+    color: #2c3e50;
+}
+
+.footer-left span {
+    font-size: 14px;
+    color: #2e8b42;
+}
+
+.footer-left .follow {
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    background: #fff;
+    color: black;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 22px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: #2e8b42;
+    color: #fff;
+}
+
+.footer-image {
+    width: 120px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Footer Links */
+.footer-links {
+    display: flex;
+    flex: 2;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    min-width: 500px;
+}
+
+.footer-links div h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.footer-links a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    margin: 8px 0;
+    font-size: 15px;
+}
+
+.footer-links a:hover {
+    color: #2e8b42;
+}
+
+/* Contact Info */
+.footer-links div p {
+    margin: 8px 0;
+}
+
+/* Bottom */
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    padding-top: 15px;
+    font-size: 15px;
+}
+
+.footer-bottom a {
+    color: black;
+    text-decoration: none;
+    margin: 0 5px;
+    font-weight: 600;
+}
+
+.footer-bottom a:hover {
+    color: #2e8b42;
+}
+
+  </style>
+</head>
+<body>
+
+  <header class="main-header" id="mainHeader">
+        <div class="header-container">
+            <div class="logo">
+                <img src="image/f06d4fb4-1a3e-4229-b142-3185452f8a6a-removebg-preview 1.png" alt="The Market Grocery Logo">
+            </div>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Search product category">
+                <i class="fas fa-search"></i>
+            </div>
+
+            
+
+            <div class="user-actions " id="userActions">
+                <img src="image/Frame 30485.png" alt="User Profile" class="profile" id="profile">
+                <a href="wishlist.html" class="icon-btn"><i class="fas fa-heart"></i></a>
+                <a href="addtocart.html" class="icon-btn"><i class="fas fa-shopping-cart"></i></a>
+                <a href="#" class="icon-btn" id="bell"><i class="fas fa-bell"></i></a>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="index.html" >Home</a></li>
+                <li><a href="shopping.html">Shopping</a></li>
+                <li><a href="category.html">Categories</a></li>
+                <li><a href="blog.html">Blogs</a></li>
+                <li><a href="contact.html">Contact us</a></li>
+                <li><a href="about.html">About us</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+<!-- Profile Dropdown -->
+<div class="dropdown" id="profileDropdown">
+    <h3>My Accounts</h3>
+    <ul>
+        <a href="myacc.html" style="text-decoration: none;"><li>Personal Information</li></a>
+        <a href=""  style="text-decoration: none;"><li>My order</li></a>
+        <a href="track.html"  style="text-decoration: none;"><li>Tracking order</li></a>
+        <a href="psw.html"  style="text-decoration: none;"><li>Password Manager</li></a>
+        <a href="logout.html"  style="text-decoration: none;"><li>Logout</li></a>
+    </ul>
+</div>
+
+<!-- Notification Box -->
+<div class="notification-box" id="notificationBox">
+    <h3>Order Updates</h3>
+    <ul>
+        <li>“Your order has been placed successfully! We’ll notify you once it’s out for delivery.”</li>
+        <li>“Good news! Your groceries are on the way. Track your delivery in real time.”</li>
+        <li>“Your order has been delivered. Thank you for shopping with us!”</li>
+    </ul>
+</div>
+
+  <!-- prograss bar -->
+  <div class="progress-bar">
+    <div class="step active">Product Cart</div>
+    <div class="step active">Check Out Page</div>
+    <div class="step active">Payment Page</div>
+  </div>
+<!-- items -->
+ <div class="wishlist-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Names</th>
+          <th>Price</th>
+          <th>Date Added</th>
+          
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><img src="image/bhgu.png" alt="Aashirvaad Atta"></td>
+          <td>Ashirvaad Attaas</td>
+          <td>$200</td>
+          <td>22 July 2025</td>
+        </tr>
+
+        <tr>
+          <td><img src="image/banana.png" alt="Banana"></td>
+          <td>Fresh Bananana</td>
+          <td>$14</td>
+          <td>22 July 2025</td>
+        </tr>
+
+        <tr>
+          <td><img src="image/cabbage.png" alt="Cabbage"></td>
+          <td>Cabbage</td>
+          <td>$134</td>
+          <td>22 July 2025</td>
+        </tr>  
+      </tbody>
+    </table>
+  </div>
+<!-- payment -->
+  <div class="payment-section">
+    <div class="order-summary">
+        <h4>Order Summary</h4>
+        <p>Items: 3</p>
+        <p>Subtotal: $348</p>
+        <p>Shipping: Rs.00.0</p>
+        <p>Taxes: Rs.00.0</p>
+        <p>Coupon Discount: $100</p>
+        <h3>Total: $248</h3>
+    </div>
+    <div class="choose-payment">
+        <button id="chooseBtn">Choose payment ⌄</button> 
+        <ul id="paymentOptions" class="hidden">
+            <li onclick="showPayment('Google Pay')">Google Pay <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Google_Pay_Logo.svg" alt="GPay"></li>
+            <li onclick="showPayment('PhonePe')">PhonePe <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/PhonePe_Logo.svg" alt="PhonePe"></li>
+            <li onclick="showPayment('PayPal')">PayPal <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal"></li>
+        </ul>
+    </div>
+</div>
+
+<div id="paymentIconsBox" class="payment-details hidden">
+    <h3>Payment Details</h3>
+    <p id="selectedPayment">UPI PAYMENT:</p>
+    <div class="payment-icons">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Google_Pay_Logo.svg" alt="GPay">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/PhonePe_Logo.svg" alt="PhonePe">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/b/b5/PayPal.svg" alt="PayPal">
+    </div>
+    <button class="details-btn" id="enterDetailsBtn">Enter Details</button>
+</div>
+
+<div id="upiFormBox" class="payment-details hidden" style="text-align: left; padding-top: 5px;">
+    <h3 style="text-align: center;">Payment Details</h3>
+    <div class="form-fields" style="padding: 20px;">
+        <label style="display: block; margin-top: 15px;">Enter Name:</label>
+        <input type="text" id="name" placeholder="Your name" style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #ccc;"/>
+        
+        <label style="display: block; margin-top: 15px;">Enter UPI ID:</label>
+        <input type="text" id="upi" placeholder="example@upi" style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #ccc;"/>
+    </div>
+    <div style="text-align: center;">
+        <button class="details-btn" id="confirmBtn" style="width: 90%; background: black;">Confirm Payment</button>
+    </div>
+</div>
+
+<div id="successPage" class="payment-details hidden" style="background: #2e8b42;">
+    <h2>✅ Payment Successful!</h2>
+    <p>Thank you for your payment via <span id="successPayment"></span>.</p>
+    <a href="track.html" style="text-decoration: none;"><button onclick="resetPage()" class="details-btn" style="background: black;">Continue Shopping</button></a>
+</div>
+
+  <!-- footer -->
+    <footer class="footer">
+    <div class="footer-container">
+
+        <!-- Left Section -->
+        <div class="footer-left">
+            <img src="image/f06d4fb4-1a3e-4229-b142-3185452f8a6a-removebg-preview 1.png" alt="Logo" class="footer-logo">
+            <h2>The Market <span>grocery.com</span></h2>
+            <p class="follow">Follow Us On :</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <img src="image/1eac1217-55f9-47c9-b7c1-fb018280bd68 1.png" alt="Woman Shopping" class="footer-image">
+        </div>
+
+        <!-- Center Sections -->
+        <div class="footer-links">
+            <div>
+                <h3>Company</h3>
+                <a href="#">About us</a>
+                <a href="#">Blog</a>
+                <a href="#">Contact us</a>
+                <a href="#">Career</a>
+            </div>
+
+            <div>
+                <h3>Customer service</h3>
+                <a href="#">My Account</a>
+                <a href="#">Track your order</a>
+                <a href="#">Return</a>
+                <a href="#">FAQ</a>
+            </div>
+
+            <div>
+                <h3>Our information</h3>
+                <a href="#">Privacy</a>
+                <a href="#">User terms & Conditions</a>
+                <a href="#">Return Policy</a>
+            </div>
+
+            <div>
+                <h3>Contact info</h3>
+                <p>123-456-789</p>
+                <p>example@gmail.com</p>
+                <p>72, North Street</p>
+                <p>Mumbai - 001</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="footer-bottom">
+        <p>© 2025 My Market. All rights reserved.</p>
+        <p><a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a></p>
+    </div>
+</footer>
+
+<script>
+
+// --- Header Dropdown Toggles (Keeping existing logic) ---
+const profile = document.getElementById('profile');
+const dropdown = document.getElementById('profileDropdown');
+const bell = document.getElementById('bell');
+const notification = document.getElementById('notificationBox');
+
+if (profile) {
+  profile.addEventListener('click', () => {
+    dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+    notification.style.display = 'none';
+  });
+}
+
+if (bell) {
+  bell.addEventListener('click', () => {
+    notification.style.display = notification.style.display === 'block' ? 'none' : 'block';
+    dropdown.style.display = 'none';
+  });
+}
+
+document.addEventListener('click', (e) => {
+  if (dropdown && notification && !profile.contains(e.target) && !dropdown.contains(e.target) &&
+      !bell.contains(e.target) && !notification.contains(e.target)) {
+    dropdown.style.display = 'none';
+    notification.style.display = 'none';
+  }
+});
+
+// --- Core Payment Logic ---
+
+// 1. Toggle payment options dropdown visibility
+chooseBtn.addEventListener("click", () => {
+  paymentOptions.classList.toggle("hidden");
+});
+
+// 2. Function to select a payment method (Triggered by 'onclick' in HTML list)
+window.showPayment = function(option) {
+  chosenPayment = option; // Store the chosen payment
+  chooseBtn.textContent = option + " ⌄"; 
+  paymentOptions.classList.add("hidden");
+  
+  // Hide the form if it was visible and show the Icons Box (Image 2)
+  upiFormBox.classList.add("hidden");
+  paymentIconsBox.classList.remove("hidden"); 
+
+  // Update the text in the Icons Box
+  selectedPayment.textContent = "UPI PAYMENT: " + option;
+}
+
+// 3. 'Enter Details' Button Handler (In Icons Box)
+enterDetailsBtn.addEventListener("click", () => {
+    // Hide the Icons Box (Image 2)
+    paymentIconsBox.classList.add("hidden");
+    
+    // Show the Form Box (Image 3)
+    upiFormBox.classList.remove("hidden");
+});
+
+
+// 4. 'Confirm Payment' Button Handler (In Form Box)
+confirmBtn.addEventListener("click", () => {
+  const name = document.getElementById("name").value.trim();
+  const upi = document.getElementById("upi").value.trim();
+
+  if (name === "" || upi === "") {
+    alert("Please fill in both Name and UPI ID to proceed.");
+    return;
+  }
+
+  // --- SUCCESS LOGIC ---
+  // Hide the Form Box
+  upiFormBox.classList.add("hidden");
+  
+  // Show the Success Message
+  successPage.classList.remove("hidden");
+  successPayment.textContent = chosenPayment; 
+});
+
+// 5. Reset Function
+window.resetPage = function() {
+  // Hide all dynamic elements and reset the button text
+  successPage.classList.add("hidden");
+  paymentIconsBox.classList.add("hidden");
+  upiFormBox.classList.add("hidden");
+  chooseBtn.textContent = "Choose payment ⌄";
+  chosenPayment = "";
+}
+  </script>
+</body>
+</html>

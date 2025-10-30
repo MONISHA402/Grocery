@@ -1,0 +1,628 @@
+/* Basic Reset and Variables */
+:root {
+    --primary-color: #388e3c; /* A deep green for TopFood */
+    --secondary-color: #fdd835; /* Yellow/Gold accent */
+    --text-dark: #333;
+    --text-light: #666;
+    --bg-light: #f9f9f9;
+    --border-light: #ddd;
+    --modal-bg-overlay: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    --modal-form-bg: #fff;
+    --social-google: #db4437;
+    --social-facebook: #3b5998;
+    --social-instagram: #e1306c;
+    --social-twitter: #1da1f2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+    background-color: #f8f8f8; /* Light background for the main page */
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* --- Header Styling --- */
+.main-header {
+    background-color: white;
+    border-bottom: 1px solid #eee;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--primary-color);
+    border-radius: 25px; /* More rounded search bar */
+    overflow: hidden;
+    flex-grow: 1; /* Allow search bar to take available space */
+    max-width: 500px; /* Limit its max width */
+    margin: 0 20px;
+    background-color: var(--primary-color);
+}
+
+.search-bar input {
+    border: none;
+    padding: 10px 15px;
+    flex-grow: 1;
+    outline: none;
+    background-color: white;
+    font-size: 1em;
+}
+
+.search-bar .fas {
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+/* --- Auth Buttons (Register) --- */
+.auth-buttons .register-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s;
+}
+
+.auth-buttons .register-btn:hover {
+    background-color: #2b7030;
+}
+/* --- User Actions (After Login) --- */
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-actions.hidden {
+    display: none;
+}
+
+.profile {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.user-actions .icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.3em;
+    color: var(--text-dark);
+}
+/* --- Main Navigation --- */
+.main-nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 15px;
+    margin-top: 10px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    font-weight: 500;
+    font-size: 1.5rem;
+    padding: 5px 0;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links .active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .search-bar {
+        width: 100%;
+        margin: 0;
+    }
+    .main-nav {
+        padding-left: 0;
+        margin-top: 15px;
+    }
+    .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    .modal-content {
+        padding: 20px;
+    }
+    .modal-content h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+    .input-group input, .login-btn {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+    .social-login {
+        gap: 10px;
+    }
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1em;
+    }
+}
+
+/* .profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+} */
+
+/* Dropdown */
+.dropdown {
+  position: absolute;
+  top: 90px;
+  right: 40px;
+  width: 250px;
+  background: #4CAF50;
+  border-radius: 10px;
+  display: none;
+  color: white;
+  padding: 10px 15px;
+}
+
+.dropdown h3 {
+  border-bottom: 1px solid white;
+  padding-bottom: 5px;
+}
+
+.dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+}
+
+.dropdown ul li:hover {
+  color: #000;
+  background: #fff;
+  border-radius: 5px;
+}
+
+/* Notification Box */
+.notification-box {
+  position: absolute;
+  top: 90px;
+  right: 90px;
+  width: 450px;
+  background: #4CAF50;
+  border-radius: 15px;
+  color: white;
+  padding: 20px;
+  display: none;
+}
+
+.notification-box h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.notification-box ul {
+  list-style-type: disc;
+  margin-left: 25px;
+}
+
+.notification-box li {
+  margin: 10px 0;
+}
+
+/* --- Layout Container --- */
+.category-page {
+    display: flex;
+    padding-top: 20px; 
+}
+
+/* --- New Filter Button Placement --- */
+.filter-toggle-main {
+    margin-right: 180px;
+    display: inline-flex;
+    align-items: center;
+    gap: 28px;
+    margin-bottom: 20px;
+    padding: 10px 15px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #333; 
+}
+
+/* --- Sidebar Overlay Styles (Critical Changes) --- */
+
+.sidebar {
+   
+    position: absolute;
+    top: 180px; /* Position below the main navigation/header */
+    left: 0;
+    width: 250px;
+    padding: 20px;
+    background-color: rgb(14, 180, 66); /* Changed to white background for contrast */
+    color: #fff;
+    z-index: 100;
+    height: 1500px;
+    max-height: 150vh; /* Prevents it from being too tall */
+    overflow-y: auto;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    opacity: 0;
+    pointer-events: none; /* Crucial: Allows clicking through when hidden */
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* State that shows the sidebar when the button is clicked */
+.sidebar.open {
+    opacity: 1;
+    pointer-events: all; /* Crucial: Allows interaction when visible */
+}
+
+/* Close button style (for the overlay) */
+.close-sidebar {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.2em;
+    cursor: pointer;
+    color: #333;
+}
+
+
+
+
+/* Styles for the filter sections */
+.filter-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    margin-bottom: 20px;
+    color: white;
+}
+
+.filter-section h4 {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    padding-bottom: 5px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+.checkbox-group label, .radio-group label {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 0.9em;
+    cursor: pointer;
+}
+
+/* Submit button example */
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: white;
+    color: var(--primary-color);
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 30px;
+    font-weight: bold;
+}
+
+/* --- Main Content & Products --- */
+
+
+.main-content {
+    flex-grow: 1 ; 
+    padding: 0 30px; 
+   
+    padding: 0 30px;
+}
+
+.page-title {
+    font-size: 1.8em;
+    margin-bottom: 20px;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+}
+
+.product-image {
+    position: relative;
+}
+
+.product-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    display: block;
+}
+
+/* Discount Badge */
+.discount-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: var(--accent-color);
+    color: white;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.8em;
+    z-index: 10;
+}
+
+/* Heart Icon Styling */
+.heart-icon {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 1.2em;
+    color: white; /* Default color (white border) */
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+/* The key style for the red fill */
+.heart-icon.liked {
+    color: var(--accent-color); /* Fills red when liked */
+    background: white;
+}
+
+/* Product Details */
+.product-details {
+    padding: 15px;
+}
+
+.rating {
+    float: right;
+    color: gold;
+    font-size: 0.9em;
+}
+
+.add-to-cart-btn {
+    background-color: white;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.add-to-cart-btn:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* Filter Toggle Button (Initially hidden on desktop) */
+.filter-toggle {
+    display: none;
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    padding: 10px 15px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 100;
+}
+
+/* --- Responsive Layout for Mobile --- */
+@media (max-width: 768px) {
+    .category-page {
+        flex-direction: column; /* Stacks sidebar and main content */
+    }
+
+    /* Show the filter toggle button */
+    .filter-toggle {
+        display: block; 
+    }
+
+    .sidebar {
+        /* Hide sidebar off-screen by default */
+        position: fixed;
+        height: 100%;
+        top: 0;
+        left: 0;
+        z-index: 99;
+        transform: translateX(-100%);
+    }
+
+    /* Class added by JS to show the sidebar */
+    .sidebar.open {
+        transform: translateX(0);
+        box-shadow: 2px 0 5px rgba(0, 0, 0, 0.5);
+    }
+    
+    .main-content {
+        padding: 20px;
+    }
+}
+
+
+/* footer */
+.footer {
+    background-color: #f39c12;
+    color: black;
+    padding: 40px 60px 20px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+/* Left Section */
+.footer-left {
+    flex: 1;
+    min-width: 250px;
+    position: relative;
+}
+
+.footer-logo {
+    width: 90px;
+}
+
+.footer-left h2 {
+    margin: 10px 0;
+    color: #2c3e50;
+}
+
+.footer-left span {
+    font-size: 14px;
+    color: #2e8b42;
+}
+
+.footer-left .follow {
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    background: #fff;
+    color: black;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 22px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: #2e8b42;
+    color: #fff;
+}
+
+.footer-image {
+    width: 120px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Footer Links */
+.footer-links {
+    display: flex;
+    flex: 2;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    min-width: 500px;
+}
+
+.footer-links div h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.footer-links a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    margin: 8px 0;
+    font-size: 15px;
+}
+
+.footer-links a:hover {
+    color: #2e8b42;
+}
+
+/* Contact Info */
+.footer-links div p {
+    margin: 8px 0;
+}
+
+/* Bottom */
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    padding-top: 15px;
+    font-size: 15px;
+}
+
+.footer-bottom a {
+    color: black;
+    text-decoration: none;
+    margin: 0 5px;
+    font-weight: 600;
+}
+
+.footer-bottom a:hover {
+    color: #2e8b42;
+}
+

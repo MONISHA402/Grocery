@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TopFood - Explore Fresh & Healthy</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+
+   <header class="main-header" id="mainHeader">
+        <div class="header-container">
+            <div class="logo">
+                <img src="image/f06d4fb4-1a3e-4229-b142-3185452f8a6a-removebg-preview 1.png" alt="The Market Grocery Logo">
+            </div>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Search product category">
+                <i class="fas fa-search"></i>
+            </div>
+
+            <div class="auth-buttons" id="authButtons">
+                <button class="register-btn" id="registerBtn">Register</button>
+            </div>
+
+            <div class="user-actions hidden" id="userActions">
+                <img src="image/Frame 30485.png" alt="User Profile" class="profile" id="profile">
+                <a href="wishlist.html" class="icon-btn"><i class="fas fa-heart"></i></a>
+                <a href="addtocart.html" class="icon-btn"><i class="fas fa-shopping-cart"></i></a>
+                <a href="#" class="icon-btn" id="bell"><i class="fas fa-bell"></i></a>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="shopping.html">Shopping</a></li>
+                <li><a href="category.html">Categories</a></li>
+                <li><a href="blog.html">Blogs</a></li>
+                <li><a href="contact.html">Contact us</a></li>
+                <li><a href="about.html">About us</a></li>
+            </ul>
+        </nav>
+
+    </header>
+<!-- Register -->
+ <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" id="closeRegisterModal">&times;</span>
+            <h2>Register Free !</h2>
+
+            <form id="loginForm">
+                <div class="input-group">
+                    <input type="email" placeholder="Enter your e-mail" required>
+                </div>
+                <div class="input-group">
+                    <input type="password" placeholder="Password" required>
+                </div>
+                <button type="submit" class="login-btn">Login</button>
+            </form>
+            
+            <a href="#" class="forgot-password">Forget your password?</a>
+
+            <div class="social-separator">
+                <span>Sign Up Using</span>
+            </div>
+
+            <div class="social-login">
+                <a href="#" class="social-icon google"><i class="fab fa-google"></i></a>
+                <a href="#" class="social-icon facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" class="social-icon instagram"><i class="fab fa-instagram"></i></a>
+                <a href="#" class="social-icon twitter"><i class="fab fa-twitter"></i></a>
+            </div>
+
+            <p class="signup-prompt">
+                Don't have an account? <a href="#" class="create-account-link">Create New Account</a>
+            </p>
+        </div>
+    </div>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content small-modal">
+            <span class="close-button" id="closeSuccessModal">&times;</span>
+            <p>Login Successful!</p>
+            <button class="ok-button" id="okSuccessModal">OK</button>
+        </div>
+    </div>
+
+<!-- Profile Dropdown -->
+<div class="dropdown" id="profileDropdown">
+    <h3>My Accounts</h3>
+    <ul>
+        <a href="myacc.html" style="text-decoration: none;"><li>Personal Information</li></a>
+        <a href=""  style="text-decoration: none;"><li>My order</li></a>
+        <a href="track.html"  style="text-decoration: none;"><li>Tracking order</li></a>
+        <a href="psw.html"  style="text-decoration: none;"><li>Password Manager</li></a>
+        <a href="logout.html"  style="text-decoration: none;"><li>Logout</li></a>
+    </ul>
+</div>
+
+<!-- Notification Box -->
+<div class="notification-box" id="notificationBox">
+    <h3>Order Updates</h3>
+    <ul>
+        <li>“Your order has been placed successfully! We’ll notify you once it’s out for delivery.”</li>
+        <li>“Good news! Your groceries are on the way. Track your delivery in real time.”</li>
+        <li>“Your order has been delivered. Thank you for shopping with us!”</li>
+    </ul>
+</div>
+<!-- main -->
+    <main class="main">
+        <section class="hero-section">
+            <div class="hero-content">
+                <h1>Explore Fresh & Healthy</h1>
+                <h2>Convenience and Trust your way</h2>
+                <p>Your trusted online grocery store for quick,easy, and reliable shopping --<br>freshness delivered within hours.</p>
+                <button class="shop-now-btn">Shop Now  <i class="fas fa-arrow-right"></i></button>
+                <a href="enquire.html" style="color: orange; text-decoration: underline; ">Enquirty Furniture</a>
+            </div>
+        </section>
+        <div class="rating-section">
+
+    <div class="avatar-stack">
+        <div class="avatar" style="z-index: 5;">
+            <img src="https://picsum.photos/id/1012/100/100" alt="Customer Avatar 1">
+        </div>
+        
+        <div class="avatar" style="z-index: 4;">
+            <img src="https://picsum.photos/id/1025/100/100" alt="Customer Avatar 2">
+        </div>
+        
+        <div class="avatar" style="z-index: 3;">
+            <img src="https://picsum.photos/id/1027/100/100" alt="Customer Avatar 3">
+        </div>
+        
+        <div class="avatar" style="z-index: 2;">
+            <img src="https://picsum.photos/id/1035/100/100" alt="Customer Avatar 4">
+        </div>
+
+        <div class="avatar plus-sign" style="z-index: 1;">
+            <span>+</span>
+        </div>
+        </div>
+
+        <div class="rating-info">
+            <p class="main-rating">4.9k Ratings+</p>
+            <p class="trust-text">Trusted by 50k customers</p>
+        </div>
+
+    </div>
+
+<!-- info sec -->
+        <section class="info-section container">
+            <h2>Why Choose Us!</h2>
+            <div class="info-cards">
+                <div class="card">
+                    <img src="image/ChatGPT Image Aug 18, 2025, 01_07_22 PM 1.png" class="icon-circle">
+                    <p>Fresh & Premium</p>
+                </div>
+                <div class="card">
+                    <img src="image/Man traveler walking in the city carry a suitcase… 1.png " class="icon-circle">
+                    <p>Fast & Reliable Delivery</p>
+                </div>
+                <div class="card">
+                    <img src="image/Illustration_isometric_concept__Safety_of_online_-removebg-preview (1) 2.png" class="icon-circle">
+                    <p>Assured Quality</p>
+                </div>
+                <div class="card">
+                    <img src="image/58e00aaf-9d42-4a7f-a520-1d56226a063a-removebg-preview 1.png " class="icon-circle">
+                    <p>Wholesome Foods</p>
+                </div>
+                <div class="card">
+                    <img src="image/f7e828a3-1c78-4191-8c06-7fdc3a19940b-removebg-preview 1.png" class="icon-circle">
+                    <p>Quality & Trust</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="categories-section container">
+            <h2>Categories</h2>
+            <div class="category-list">
+                <div class="category-item">
+                    <img src="image/Group 30670.png" class="category-image">
+                    <p>Vegetables</p>
+                </div>
+                <div class="category-item">
+                    <img src="image/Group 30671.png" class="category-image">
+                    <p>Fresh Fruits</p>
+                </div>
+                <div class="category-item">
+                    <img src="image/Group 30672.png" class="category-image">
+                    <p>Milk&egg</p>
+                </div>
+                <div class="category-item">
+                    <img src="image/Group 30673.png" class="category-image">
+                    <p>Dry fruits</p>
+                </div>
+                <div class="category-item">
+                    <img src="image/Group 30674.png" class="category-image">
+                    <p>House hold</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="deals-section container">
+            <h2>Deals flat 25% off</h2>
+            <div class="deals-grid">
+                <div class="deal-item">
+                    <img src="image/istockphoto-1015771620-612x612.png" alt="Deal 1"> <p>Fresh vegetables and Groceries have 25% Off</p>
+                    <a href="shopping.html" class="shop-btn">Shop Now</a>
+                </div>
+                <div class="deal-item">
+                    <img src="image/istockphoto-1015771620-612x612-1.png" alt="Deal 2"> <p>Fresh Fruits and Healthy items have 25% Off</p>
+                    <a href="shopping.html" class="shop-btn">Shop Now</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="featured-section container">
+            <h2>Featured products</h2>
+            <div class="products-grid">
+                <div class="product-card">
+                    <div class="badge">20% off</div>
+                    <img src="image/istockphoto-177385867-612x612-removebg-preview.png" alt="Red Strawberry"> 
+                    <div style="display:flex; ">
+                        <p style="color: greenyellow;font-size: 1.2rem;font-weight: 600;margin-right: 195px;">Fruits</p> 
+                        <i class="fas fa-star" style="color: yellow;"></i> 4.5
+                    </div>
+                    <div class="actions">
+                        <p class="name">Fresh Strawberry</p><br>
+                        <p style="color: #866f6f89;">500g</p>
+                        <p class="price">$56</p>
+                        <button class="add-btn">Add <i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="badge">20% off</div>
+                    <img src="image/istockphoto-177385867-612x612-removebg-preview-1.png" alt="Red Strawberry"> 
+                    <div style="display:flex; ">
+                        <p style="color: greenyellow;font-size: 1.2rem;font-weight: 600;margin-right: 195px;">Vegetables</p> 
+                        <i class="fas fa-star" style="color: yellow;"></i> 4.5
+                    </div>
+                    <div class="actions">
+                        <p class="name">Fresh Combo</p><br>
+                        <p style="color: #866f6f89;">500g</p>
+                        <p class="price">$56</p>
+                        <button class="add-btn">Add <i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+
+
+                <div class="product-card">
+                    <div class="badge">20% off</div>
+                    <img src="image/istockphoto-177385867-612x612-removebg-preview-2.png" alt="Red Strawberry"> 
+                    <div style="display:flex; ">
+                        <p style="color: greenyellow;font-size: 1.2rem;font-weight: 600;margin-right: 195px;">Fruits</p> 
+                        <i class="fas fa-star" style="color: yellow;"></i> 4.5
+                    </div>
+                    
+                    <div class="actions">
+                        <p class="name">Fresh Lemon</p><br>
+                        <p style="color: #866f6f89;">500g</p>
+                        <p class="price">$56</p>
+                        <button class="add-btn">Add <i class="fas fa-shopping-cart"></i></button>
+                    </div>
+                </div>
+            </div>
+
+    
+
+             
+        </section>
+
+        <section class="faq-section container">
+            <div class="faq-item">
+                <h3>1.) Do you offer free delivery? <i class="fas fa-chevron-down"></i></h3>
+                <p class="answer">Yes, we offer free standard delivery on all orders above Rs.5000.Express and scheduled delivery options are also available at checkout.</p>
+            </div>
+            <div class="faq-item">
+                <h3>2.) How long will it take to receive my order? <i class="fas fa-chevron-down"></i></h3>
+                <p class="answer">Delivery times vary based on your locatio and the product availability.Most orders are delivered withn 5-10 business days.Custom-made items may take longer.</p>
+            </div>
+             <div class="faq-item">
+                <h3>3.) Can I return or exchange grocery after purchase? <i class="fas fa-chevron-down"></i></h3>
+                <p class="answer">Yes, you can return/exchange within 7 days of delivery.Items mst be unused and in original condition.Please check our Return Policy for details.</p>
+            </div>
+            <div class="faq-item contact-support">
+                <h3>4.) How can I contact customer support?</h3>
+                <p>You can reach us via live chat,email at: <a href="#">support@domain.com</a>, or call our helpline <a href="#">1-888-123-4567</a>(Mon-Sat,10AM - 6PM).</p>
+            </div>
+        </section>
+    
+</main>
+    <footer class="footer">
+    <div class="footer-container">
+
+        <!-- Left Section -->
+        <div class="footer-left">
+            <img src="image/f06d4fb4-1a3e-4229-b142-3185452f8a6a-removebg-preview 1.png" alt="Logo" class="footer-logo">
+            <h2>The Market <span>grocery.com</span></h2>
+            <p class="follow">Follow Us On :</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <img src="image/1eac1217-55f9-47c9-b7c1-fb018280bd68 1.png" alt="Woman Shopping" class="footer-image">
+        </div>
+
+        <!-- Center Sections -->
+        <div class="footer-links">
+            <div>
+                <h3>Company</h3>
+                <a href="#">About us</a>
+                <a href="#">Blog</a>
+                <a href="#">Contact us</a>
+                <a href="#">Career</a>
+            </div>
+
+            <div>
+                <h3>Customer service</h3>
+                <a href="#">My Account</a>
+                <a href="#">Track your order</a>
+                <a href="#">Return</a>
+                <a href="#">FAQ</a>
+            </div>
+
+            <div>
+                <h3>Our information</h3>
+                <a href="#">Privacy</a>
+                <a href="#">User terms & Conditions</a>
+                <a href="#">Return Policy</a>
+            </div>
+
+            <div>
+                <h3>Contact info</h3>
+                <p>123-456-789</p>
+                <p>example@gmail.com</p>
+                <p>72, North Street</p>
+                <p>Mumbai - 001</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="footer-bottom">
+        <p>© 2025 My Market. All rights reserved.</p>
+        <p><a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a></p>
+    </div>
+</footer>
+
+<script>
+
+
+
+// register 
+document.addEventListener('DOMContentLoaded', function() {
+    // Get elements
+    const registerBtn = document.getElementById('registerBtn');
+    const registerModal = document.getElementById('registerModal');
+    const closeRegisterModal = document.getElementById('closeRegisterModal');
+    const loginForm = document.getElementById('loginForm');
+    
+    const successModal = document.getElementById('successModal');
+    const closeSuccessModal = document.getElementById('closeSuccessModal');
+    const okSuccessModal = document.getElementById('okSuccessModal');
+
+    const authButtons = document.getElementById('authButtons');
+    const userActions = document.getElementById('userActions');
+
+    // --- Register Modal Functionality ---
+
+    // Open the register modal
+    if (registerBtn) {
+        registerBtn.addEventListener('click', function() {
+            registerModal.classList.add('show');
+        });
+    }
+
+    // Close the register modal with the 'x' button
+    if (closeRegisterModal) {
+        closeRegisterModal.addEventListener('click', function() {
+            registerModal.classList.remove('show');
+        });
+    }
+
+    // Close modal if user clicks outside of it
+    window.addEventListener('click', function(event) {
+        if (event.target == registerModal) {
+            registerModal.classList.remove('show');
+        }
+        if (event.target == successModal) {
+            successModal.classList.remove('show');
+        }
+    });
+
+    // --- Login Form Submission (Simulated) ---
+    if (loginForm) {
+        loginForm.addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent actual form submission
+
+            // Simulate a successful login
+            console.log("Login attempt...");
+            // In a real app, you'd send data to a server and get a response
+
+            // Close register modal
+            registerModal.classList.remove('show');
+
+            // Show success modal
+            successModal.classList.add('show');
+        });
+    }
+
+    // --- Login Success Modal Functionality ---
+
+    // Close success modal with 'x' button
+    if (closeSuccessModal) {
+        closeSuccessModal.addEventListener('click', function() {
+            successModal.classList.remove('show');
+            handleLoginSuccess(); // Update header after closing success dialog
+        });
+    }
+
+    // Close success modal with 'OK' button
+    if (okSuccessModal) {
+        okSuccessModal.addEventListener('click', function() {
+            successModal.classList.remove('show');
+            handleLoginSuccess(); // Update header after closing success dialog
+        });
+    }
+
+    // --- Function to handle post-login header change ---
+    function handleLoginSuccess() {
+        if (authButtons && userActions) {
+            authButtons.classList.add('hidden'); // Hide Register button
+            userActions.classList.remove('hidden'); // Show user icons
+            console.log("User successfully logged in and header updated!");
+            // You might want to store login state in localStorage here
+            // localStorage.setItem('isLoggedIn', 'true');
+        }
+    }
+
+    // --- Check for login state on page load (optional) ---
+    // If you uncomment the localStorage line above, you'd check it here:
+    // if (localStorage.getItem('isLoggedIn') === 'true') {
+    //     handleLoginSuccess();
+    // }
+});
+
+const profile = document.getElementById('profile');
+const dropdown = document.getElementById('profileDropdown');
+const bell = document.getElementById('bell');
+const notification = document.getElementById('notificationBox');
+
+// Toggle dropdown
+profile.addEventListener('click', () => {
+  dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+  notification.style.display = 'none';
+});
+
+// Toggle notification box
+bell.addEventListener('click', () => {
+  notification.style.display = notification.style.display === 'block' ? 'none' : 'block';
+  dropdown.style.display = 'none';
+});
+
+// Hide both when clicking outside
+document.addEventListener('click', (e) => {
+  if (!profile.contains(e.target) && !dropdown.contains(e.target) &&
+      !bell.contains(e.target) && !notification.contains(e.target)) {
+    dropdown.style.display = 'none';
+    notification.style.display = 'none';
+  }
+});
+
+</script>
+</body>
+</html>

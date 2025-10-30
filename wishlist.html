@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <title>Wishlist Section</title>
+  <link rel="stylesheet" href="css/wishlist.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+   <header class="main-header" id="mainHeader">
+        <div class="header-container">
+            <div class="logo">
+                <img src="image/f06d4fb4-1a3e-4229-b142-3185452f8a6a-removebg-preview 1.png" alt="The Market Grocery Logo">
+            </div>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Search product category">
+                <i class="fas fa-search"></i>
+            </div>
+
+           
+            <div class="user-actions " id="userActions">
+                <img src="image/Frame 30485.png" alt="User Profile" class="profile" id="profile">
+                <a href="wishlist.html" class="icon-btn"><i class="fas fa-heart"></i></a>
+                <a href="addtocart.html" class="icon-btn"><i class="fas fa-shopping-cart"></i></a>
+                <a href="#" class="icon-btn" id="bell"><i class="fas fa-bell"></i></a>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="shopping.html">Shopping</a></li>
+                <li><a href="category.html">Categories</a></li>
+                <li><a href="blog.html">Blogs</a></li>
+                <li><a href="contact.html">Contact us</a></li>
+                <li><a href="about.html">About us</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+<!-- Profile Dropdown -->
+<div class="dropdown" id="profileDropdown">
+    <h3>My Accounts</h3>
+    <ul>
+        <a href="myacc.html" style="text-decoration: none;"><li>Personal Information</li></a>
+        <a href=""  style="text-decoration: none;"><li>My order</li></a>
+        <a href="track.html"  style="text-decoration: none;"><li>Tracking order</li></a>
+        <a href="psw.html"  style="text-decoration: none;"><li>Password Manager</li></a>
+        <a href="logout.html"  style="text-decoration: none;"><li>Logout</li></a>
+    </ul>
+</div>
+
+<!-- Notification Box -->
+<div class="notification-box" id="notificationBox">
+    <h3>Order Updates</h3>
+    <ul>
+        <li>“Your order has been placed successfully! We’ll notify you once it’s out for delivery.”</li>
+        <li>“Good news! Your groceries are on the way. Track your delivery in real time.”</li>
+        <li>“Your order has been delivered. Thank you for shopping with us!”</li>
+    </ul>
+</div>
+
+<!-- wishlist -->
+  <h2 class="title">Wishlist Section</h2>
+
+  <div class="wishlist-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Names</th>
+          <th>Price</th>
+          <th>Date Added</th>
+          <th>Stock Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td><img src="image/bhgu.png" alt="Aashirvaad Atta"></td>
+          <td>Ashirvaad Attaas</td>
+          <td>$200</td>
+          <td>22 July 2025</td>
+          <td><span class="instock">InStock</span> <a href="product_detail.html"><button class="btn">Add to Cart</button></a></td>
+        </tr>
+
+        <tr>
+          <td><img src="image/banana.png" alt="Banana"></td>
+          <td>Fresh Bananana</td>
+          <td>$14</td>
+          <td>22 July 2025</td>
+          <td><span class="instock">InStock</span> <a href="product_detail.html"><button class="btn">Add to Cart</button></a></td>
+        </tr>
+
+        <tr>
+          <td><img src="image/cabbage.png" alt="Cabbage"></td>
+          <td>Cabbage</td>
+          <td>$134</td>
+          <td>22 July 2025</td>
+          <td><span class="instock">InStock</span> <a href="product_detail.html"><button class="btn">Add to Cart</button></a></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bottom Section -->
+  <div class="bottom-section">
+    <label>Wishlist link</label>
+    <input type="text" placeholder="http://example.com">
+    <button class="copy-btn">Copy link</button>
+    <a href="#" class="clear">clear Wishlist</a>
+    <a href="product_detail.html" ><button class="add-btn">Add to Cart</button></a>
+  </div>
+
+
+  <!-- footer -->
+    <footer class="footer">
+    <div class="footer-container">
+
+        <!-- Left Section -->
+        <div class="footer-left">
+            <img src="image/f06d4fb4-1a3e-4229-b142-3185452f8a6a-removebg-preview 1.png" alt="Logo" class="footer-logo">
+            <h2>The Market <span>grocery.com</span></h2>
+            <p class="follow">Follow Us On :</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <img src="image/1eac1217-55f9-47c9-b7c1-fb018280bd68 1.png" alt="Woman Shopping" class="footer-image">
+        </div>
+
+        <!-- Center Sections -->
+        <div class="footer-links">
+            <div>
+                <h3>Company</h3>
+                <a href="#">About us</a>
+                <a href="#">Blog</a>
+                <a href="#">Contact us</a>
+                <a href="#">Career</a>
+            </div>
+
+            <div>
+                <h3>Customer service</h3>
+                <a href="#">My Account</a>
+                <a href="#">Track your order</a>
+                <a href="#">Return</a>
+                <a href="#">FAQ</a>
+            </div>
+
+            <div>
+                <h3>Our information</h3>
+                <a href="#">Privacy</a>
+                <a href="#">User terms & Conditions</a>
+                <a href="#">Return Policy</a>
+            </div>
+
+            <div>
+                <h3>Contact info</h3>
+                <p>123-456-789</p>
+                <p>example@gmail.com</p>
+                <p>72, North Street</p>
+                <p>Mumbai - 001</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="footer-bottom">
+        <p>© 2025 My Market. All rights reserved.</p>
+        <p><a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a></p>
+    </div>
+</footer>
+
+<script>
+const profile = document.getElementById('profile');
+const dropdown = document.getElementById('profileDropdown');
+const bell = document.getElementById('bell');
+const notification = document.getElementById('notificationBox');
+
+// Toggle dropdown
+profile.addEventListener('click', () => {
+  dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+  notification.style.display = 'none';
+});
+
+// Toggle notification box
+bell.addEventListener('click', () => {
+  notification.style.display = notification.style.display === 'block' ? 'none' : 'block';
+  dropdown.style.display = 'none';
+});
+
+// Hide both when clicking outside
+document.addEventListener('click', (e) => {
+  if (!profile.contains(e.target) && !dropdown.contains(e.target) &&
+      !bell.contains(e.target) && !notification.contains(e.target)) {
+    dropdown.style.display = 'none';
+    notification.style.display = 'none';
+  }
+});
+
+</script>
+</body>
+</html>

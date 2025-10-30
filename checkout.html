@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout Page</title>
+  <link rel="stylesheet" href="css/checkout.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+</head>
+<body>
+   <header class="main-header" id="mainHeader">
+        <div class="header-container">
+            <div class="logo">
+                <img src="image/f06d4fb4-1a3e-4229-b142-3185452f8a6a-removebg-preview 1.png" alt="The Market Grocery Logo">
+            </div>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Search product category">
+                <i class="fas fa-search"></i>
+            </div>
+
+            
+
+            <div class="user-actions " id="userActions">
+                <img src="image/Frame 30485.png" alt="User Profile" class="profile" id="profile">
+                <a href="wishlist.html" class="icon-btn"><i class="fas fa-heart"></i></a>
+                <a href="addtocart.html" class="icon-btn"><i class="fas fa-shopping-cart"></i></a>
+                <a href="#" class="icon-btn" id="bell"><i class="fas fa-bell"></i></a>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="shopping.html">Shopping</a></li>
+                <li><a href="category.html">Categories</a></li>
+                <li><a href="blog.html">Blogs</a></li>
+                <li><a href="contact.html">Contact us</a></li>
+                <li><a href="about.html">About us</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+<!-- Profile Dropdown -->
+<div class="dropdown" id="profileDropdown">
+    <h3>My Accounts</h3>
+    <ul>
+        <a href="myacc.html" style="text-decoration: none;"><li>Personal Information</li></a>
+        <a href=""  style="text-decoration: none;"><li>My order</li></a>
+        <a href="track.html"  style="text-decoration: none;"><li>Tracking order</li></a>
+        <a href="psw.html"  style="text-decoration: none;"><li>Password Manager</li></a>
+        <a href="logout.html"  style="text-decoration: none;"><li>Logout</li></a>
+    </ul>
+</div>
+
+<!-- Notification Box -->
+<div class="notification-box" id="notificationBox">
+    <h3>Order Updates</h3>
+    <ul>
+        <li>“Your order has been placed successfully! We’ll notify you once it’s out for delivery.”</li>
+        <li>“Good news! Your groceries are on the way. Track your delivery in real time.”</li>
+        <li>“Your order has been delivered. Thank you for shopping with us!”</li>
+    </ul>
+</div>
+<!-- prograss bar -->
+  <div class="progress-bar">
+    <div class="step active">Product Cart</div>
+    <div class="step active">Check Out Page</div>
+    <div class="step active">Payment Page</div>
+  </div>
+
+<!-- checkout -->
+  <div class="checkout-container">
+    <!-- Billing Form -->
+    <div class="billing-form">
+      <h2>Billing Details</h2>
+
+      <form>
+        <div class="row">
+          <div class="input-box">
+            <label>First Name*</label>
+            <input type="text" placeholder="Ex: John">
+          </div>
+          <div class="input-box">
+            <label>Last Name*</label>
+            <input type="text" placeholder="Ex: Doe">
+          </div>
+        </div>
+
+        <div class="input-box">
+          <label>Country*</label>
+          <select>
+            <option>Select Country</option>
+            <option>India</option>
+            <option>USA</option>
+            <option>UK</option>
+          </select>
+        </div>
+
+        <div class="input-box">
+          <label>Street Address*</label>
+          <input type="text" placeholder="Enter Street Address">
+        </div>
+
+        <div class="row">
+          <div class="input-box">
+            <label>City*</label>
+            <select>
+              <option>Select City</option>
+              <option>Bangalore</option>
+              <option>Chennai</option>
+              <option>Delhi</option>
+            </select>
+          </div>
+          <div class="input-box">
+            <label>State*</label>
+            <select>
+              <option>Select State</option>
+              <option>Karnataka</option>
+              <option>Tamil Nadu</option>
+              <option>Maharashtra</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="input-box">
+            <label>Zip Code*</label>
+            <input type="text" placeholder="Enter Zipcode">
+          </div>
+          <div class="input-box">
+            <label>Phone*</label>
+            <input type="text" placeholder="Enter Phone Number">
+          </div>
+        </div>
+
+        <div class="input-box">
+          <label>Email*</label>
+          <input type="email" placeholder="Enter E-mail">
+        </div>
+
+        <h3>Delivery Address</h3>
+        <div class="address-options">
+          <button type="button" class="btn-option">Use a different billing address</button>
+          <button type="button" class="btn-option">Same as shipping address</button>
+        </div>
+      </form>
+    </div>
+
+    <!-- Order Summary -->
+    <div class="order-summary">
+      <h3>Order Summary</h3>
+      <div class="summary-item">
+        <p>Items</p>
+        <p>3</p>
+      </div>
+      <div class="summary-item">
+        <p>Subtotal</p>
+        <p>$3,348</p>
+      </div>
+      <div class="summary-item">
+        <p>Shipping</p>
+        <p>Rs.0.00</p>
+      </div>
+      <div class="summary-item">
+        <p>Taxes</p>
+        <p>Rs.0.00</p>
+      </div>
+      <div class="summary-item">
+        <p>Coupon Discount</p>
+        <p>$100</p>
+      </div>
+      <hr>
+      <div class="summary-total">
+        <p><strong>Total</strong></p>
+        <p><strong>$2,248</strong></p>
+      </div>
+      <a href="choosepayment.html" style="text-decoration: none; color: white;background-color: black;"> <button class="payment-btn">Proceed to Payment</button></a>
+    </div>
+  </div>
+
+      <footer class="footer">
+    <div class="footer-container">
+
+        <!-- Left Section -->
+        <div class="footer-left">
+            <img src="image/f06d4fb4-1a3e-4229-b142-3185452f8a6a-removebg-preview 1.png" alt="Logo" class="footer-logo">
+            <h2>The Market <span>grocery.com</span></h2>
+            <p class="follow">Follow Us On :</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <img src="image/1eac1217-55f9-47c9-b7c1-fb018280bd68 1.png" alt="Woman Shopping" class="footer-image">
+        </div>
+
+        <!-- Center Sections -->
+        <div class="footer-links">
+            <div>
+                <h3>Company</h3>
+                <a href="#">About us</a>
+                <a href="#">Blog</a>
+                <a href="#">Contact us</a>
+                <a href="#">Career</a>
+            </div>
+
+            <div>
+                <h3>Customer service</h3>
+                <a href="#">My Account</a>
+                <a href="#">Track your order</a>
+                <a href="#">Return</a>
+                <a href="#">FAQ</a>
+            </div>
+
+            <div>
+                <h3>Our information</h3>
+                <a href="#">Privacy</a>
+                <a href="#">User terms & Conditions</a>
+                <a href="#">Return Policy</a>
+            </div>
+
+            <div>
+                <h3>Contact info</h3>
+                <p>123-456-789</p>
+                <p>example@gmail.com</p>
+                <p>72, North Street</p>
+                <p>Mumbai - 001</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="footer-bottom">
+        <p>© 2025 My Market. All rights reserved.</p>
+        <p><a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a></p>
+    </div>
+</footer>
+
+<script>
+const profile = document.getElementById('profile');
+const dropdown = document.getElementById('profileDropdown');
+const bell = document.getElementById('bell');
+const notification = document.getElementById('notificationBox');
+
+// Toggle dropdown
+profile.addEventListener('click', () => {
+  dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+  notification.style.display = 'none';
+});
+
+// Toggle notification box
+bell.addEventListener('click', () => {
+  notification.style.display = notification.style.display === 'block' ? 'none' : 'block';
+  dropdown.style.display = 'none';
+});
+
+// Hide both when clicking outside
+document.addEventListener('click', (e) => {
+  if (!profile.contains(e.target) && !dropdown.contains(e.target) &&
+      !bell.contains(e.target) && !notification.contains(e.target)) {
+    dropdown.style.display = 'none';
+    notification.style.display = 'none';
+  }
+});
+
+</script>
+</body>
+</html>

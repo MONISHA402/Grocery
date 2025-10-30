@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <title>My Account</title>
+<style>
+
+
+/* Basic Reset and Variables */
+:root {
+    --primary-color: #388e3c; /* A deep green for TopFood */
+    --secondary-color: #fdd835; /* Yellow/Gold accent */
+    --text-dark: #333;
+    --text-light: #666;
+    --bg-light: #f9f9f9;
+    --border-light: #ddd;
+    --modal-bg-overlay: rgba(0, 0, 0, 0.5); /* Semi-transparent black */
+    --modal-form-bg: #fff;
+    --social-google: #db4437;
+    --social-facebook: #3b5998;
+    --social-instagram: #e1306c;
+    --social-twitter: #1da1f2;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: sans-serif;
+    color: var(--text-dark);
+    line-height: 1.6;
+    background-color: #f8f8f8; /* Light background for the main page */
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+.header-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+/* --- Header Styling --- */
+.main-header {
+    background-color: white;
+    border-bottom: 1px solid #eee;
+}
+
+.logo img {
+    height: 40px;
+}
+
+.search-bar {
+    display: flex;
+    align-items: center;
+    border: 2px solid var(--primary-color);
+    border-radius: 25px; /* More rounded search bar */
+    overflow: hidden;
+    flex-grow: 1; /* Allow search bar to take available space */
+    max-width: 500px; /* Limit its max width */
+    margin: 0 20px;
+    background-color: var(--primary-color);
+}
+
+.search-bar input {
+    border: none;
+    padding: 10px 15px;
+    flex-grow: 1;
+    outline: none;
+    background-color: white;
+    font-size: 1em;
+}
+
+.search-bar .fas {
+    color: white;
+    padding: 10px 15px;
+    cursor: pointer;
+}
+/* --- Auth Buttons (Register) --- */
+.auth-buttons .register-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.2s;
+}
+
+.auth-buttons .register-btn:hover {
+    background-color: #2b7030;
+}
+/* --- User Actions (After Login) --- */
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.user-actions.hidden {
+    display: none;
+}
+
+.profile {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid var(--primary-color);
+    object-fit: cover;
+    cursor: pointer;
+}
+
+.user-actions .icon-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 1.3em;
+    color: var(--text-dark);
+}
+/* --- Main Navigation --- */
+.main-nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-left: 15px;
+    margin-top: 10px;
+}
+
+.nav-links {
+    display: flex;
+    gap: 25px;
+}
+
+.nav-links a {
+    font-weight: 500;
+    padding: 5px 0;
+    transition: color 0.2s;
+}
+
+.nav-links a:hover {
+    color: var(--primary-color);
+}
+
+.nav-links .active {
+    color: var(--primary-color);
+    border-bottom: 2px solid var(--primary-color);
+}
+
+
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+    .header-container {
+        flex-direction: column;
+        gap: 15px;
+    }
+    .search-bar {
+        width: 100%;
+        margin: 0;
+    }
+    .main-nav {
+        padding-left: 0;
+        margin-top: 15px;
+    }
+    .nav-links {
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 15px;
+    }
+    .modal-content {
+        padding: 20px;
+    }
+    .modal-content h2 {
+        font-size: 1.5em;
+        margin-bottom: 20px;
+    }
+    .input-group input, .login-btn {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+    .social-login {
+        gap: 10px;
+    }
+    .social-icon {
+        width: 40px;
+        height: 40px;
+        font-size: 1em;
+    }
+}
+
+/* .profile {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+} */
+
+/* Dropdown */
+.dropdown {
+  position: absolute;
+  top: 90px;
+  right: 40px;
+  width: 250px;
+  background: #4CAF50;
+  border-radius: 10px;
+  display: none;
+  color: white;
+  padding: 10px 15px;
+}
+
+.dropdown h3 {
+  border-bottom: 1px solid white;
+  padding-bottom: 5px;
+}
+
+.dropdown ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.dropdown ul li {
+  padding: 10px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+  cursor: pointer;
+}
+
+.dropdown ul li:hover {
+  color: #000;
+  background: #fff;
+  border-radius: 5px;
+}
+
+/* Notification Box */
+.notification-box {
+  position: absolute;
+  top: 90px;
+  right: 90px;
+  width: 450px;
+  background: #4CAF50;
+  border-radius: 15px;
+  color: white;
+  padding: 20px;
+  display: none;
+}
+
+.notification-box h3 {
+  margin-top: 0;
+  font-size: 18px;
+}
+
+.notification-box ul {
+  list-style-type: disc;
+  margin-left: 25px;
+}
+
+.notification-box li {
+  margin: 10px 0;
+}
+
+    /* --- Global Styles & Reset --- */
+:root {
+    --bg-color: #fffafa; /* Light pinkish background */
+    --black-button: #000000;
+    --green-button: #4CAF50; /* A shade of green matching the image */
+    --border-color: #ccc;
+    --text-color: #333;
+    --input-bg: #ffffff;
+}
+
+
+
+/* --- Page Wrapper and Header --- */
+.account-page-wrapper {
+    width: 100%;
+    max-width: 1000px; /* Max width for the whole content area */
+    position: relative;
+}
+
+.account-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 30px;
+    position: relative;
+}
+
+.account-header h1 {
+    font-weight: 400;
+    font-size: 2em;
+}
+
+/* User Avatar */
+.user-avatar-container {
+    position: absolute;
+    top: -20px; /* Adjust as needed */
+    right: 0;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    overflow: hidden;
+    /* This makes the image look slightly raised/3D, similar to the photo */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); 
+}
+
+.user-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-image: url('https://picsum.photos/200/200?random=1'); /* Placeholder image */
+    background-size: cover;
+    background-position: center;
+}
+
+/* --- Main Content Layout (Sidebar + Form) --- */
+.account-content {
+    display: flex;
+    gap: 40px; /* Space between sidebar and form */
+    margin-top: 50px; /* Space for the avatar */
+}
+
+/* Sidebar Navigation */
+.sidebar {
+    flex-shrink: 0; /* Prevent sidebar from shrinking */
+    width: 250px; /* Fixed width for sidebar buttons */
+}
+
+.nav-button {
+    width: 100%;
+    padding: 15px 20px;
+    margin-bottom: 15px;
+    border: none;
+    border-radius: 5px; /* Slight rounding for buttons */
+    text-align: left;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    color: white; /* Default text color for the buttons */
+    font-weight: 500;
+}
+
+.nav-button.active {
+    background-color: var(--black-button);
+}
+
+.nav-button.green {
+    background-color: var(--green-button);
+}
+
+.nav-button:hover:not(.active) {
+    opacity: 0.9;
+}
+
+/* --- Form Styles --- */
+.form-container {
+    flex-grow: 1; /* Allow the form section to take up remaining space */
+    max-width: 650px; /* Limit the max width of the form elements */
+}
+
+.personal-info-form {
+    display: flex;
+    flex-direction: column;
+    gap: 25px; /* Space between form groups */
+}
+
+.form-group-row {
+    display: flex;
+    gap: 20px;
+    width: 100%;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1; /* Makes form groups in a row equal width */
+}
+
+.form-group.full-width {
+    flex: none;
+    width: 100%;
+}
+
+label {
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #555;
+    font-size: 0.95em;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"] {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 0; /* Keep sharp corners as in the image */
+    background-color: var(--input-bg);
+    width: 100%;
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+input:focus {
+    border-color: var(--green-button);
+}
+
+/* Update Button */
+.update-button {
+    align-self: flex-end; /* Pushes the button to the right */
+    padding: 10px 25px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.2s;
+    font-weight: 500;
+    margin-top: 10px; /* Space above the button */
+}
+
+.update-button.green {
+    background-color: var(--green-button);
+}
+
+.update-button:hover {
+    filter: brightness(1.1);
+}
+
+/* --- Responsiveness (Optional but recommended) --- */
+@media (max-width: 768px) {
+    .account-content {
+        flex-direction: column;
+        gap: 30px;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .sidebar nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .nav-button {
+        flex: 1 1 auto; /* Allow buttons to grow and wrap */
+        min-width: 150px;
+        text-align: center;
+        margin-bottom: 0;
+    }
+
+    .form-group-row {
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .user-avatar-container {
+        position: static;
+        margin: 0 auto 20px auto;
+    }
+
+    .account-header {
+        margin-bottom: 0;
+    }
+}
+/* footer */
+.footer {
+    background-color: #f39c12;
+    color: black;
+    padding: 40px 60px 20px;
+}
+
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+/* Left Section */
+.footer-left {
+    flex: 1;
+    min-width: 250px;
+    position: relative;
+}
+
+.footer-logo {
+    width: 90px;
+}
+
+.footer-left h2 {
+    margin: 10px 0;
+    color: #2c3e50;
+}
+
+.footer-left span {
+    font-size: 14px;
+    color: #2e8b42;
+}
+
+.footer-left .follow {
+    font-weight: 600;
+    margin-top: 20px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.social-icons a {
+    background: #fff;
+    color: black;
+    border-radius: 5px;
+    padding: 10px;
+    font-size: 22px;
+    transition: 0.3s;
+}
+
+.social-icons a:hover {
+    background: #2e8b42;
+    color: #fff;
+}
+
+.footer-image {
+    width: 120px;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+/* Footer Links */
+.footer-links {
+    display: flex;
+    flex: 2;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    min-width: 500px;
+}
+
+.footer-links div h3 {
+    margin-bottom: 15px;
+    font-size: 18px;
+}
+
+.footer-links a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    margin: 8px 0;
+    font-size: 15px;
+}
+
+.footer-links a:hover {
+    color: #2e8b42;
+}
+
+/* Contact Info */
+.footer-links div p {
+    margin: 8px 0;
+}
+
+/* Bottom */
+.footer-bottom {
+    text-align: center;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin-top: 30px;
+    padding-top: 15px;
+    font-size: 15px;
+}
+
+.footer-bottom a {
+    color: black;
+    text-decoration: none;
+    margin: 0 5px;
+    font-weight: 600;
+}
+
+.footer-bottom a:hover {
+    color: #2e8b42;
+}
+
+</style>
+</head>
+<body>
+       <header class="main-header" id="mainHeader">
+        <div class="header-container">
+            <div class="logo">
+                <img src="image/f06d4fb4-1a3e-4229-b142-3185452f8a6a-removebg-preview 1.png" alt="The Market Grocery Logo">
+            </div>
+
+            <div class="search-bar">
+                <input type="text" placeholder="Search product category">
+                <i class="fas fa-search"></i>
+            </div>
+
+           
+
+            <div class="user-actions " id="userActions">
+                <img src="image/Frame 30485.png" alt="User Profile" class="profile" id="profile">
+                <a href="wishlist.html" class="icon-btn"><i class="fas fa-heart"></i></a>
+                <a href="addtocart.html" class="icon-btn"><i class="fas fa-shopping-cart"></i></a>
+                <a href="#" class="icon-btn" id="bell"><i class="fas fa-bell"></i></a>
+            </div>
+        </div>
+
+        <nav class="main-nav">
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">Home</a></li>
+                <li><a href="shopping.html">Shopping</a></li>
+                <li><a href="category.html">Categories</a></li>
+                <li><a href="blog.html">Blogs</a></li>
+                <li><a href="contact.html">Contact us</a></li>
+                <li><a href="about.html">About us</a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+<!-- Profile Dropdown -->
+<div class="dropdown" id="profileDropdown">
+    <h3>My Accounts</h3>
+    <ul>
+        <a href="myacc.html" style="text-decoration: none;"><li>Personal Information</li></a>
+        <a href=""  style="text-decoration: none;"><li>My order</li></a>
+        <a href="track.html"  style="text-decoration: none;"><li>Tracking order</li></a>
+        <a href="psw.html"  style="text-decoration: none;"><li>Password Manager</li></a>
+        <a href="logout.html"  style="text-decoration: none;"><li>Logout</li></a>
+    </ul>
+</div>
+
+<!-- Notification Box -->
+<div class="notification-box" id="notificationBox">
+    <h3>Order Updates</h3>
+    <ul>
+        <li>“Your order has been placed successfully! We’ll notify you once it’s out for delivery.”</li>
+        <li>“Good news! Your groceries are on the way. Track your delivery in real time.”</li>
+        <li>“Your order has been delivered. Thank you for shopping with us!”</li>
+    </ul>
+</div>
+
+    <div class="account-page-wrapper">
+
+        <header class="account-header">
+            <h1>My Account</h1>
+            <div class="user-avatar-container">
+                <div class="user-avatar"></div>
+            </div>
+        </header>
+
+        <main class="account-content">
+            <aside class="sidebar">
+                <nav>
+                    <a href="myacc.html" style="text-decoration: none;"><button class="nav-button active">Personal Information</button></a>
+                     <a href="invoice.html" style="text-decoration: none;"><button class="nav-button green">My Order</button></a>
+                     <a href="psw.html" style="text-decoration: none;"><button class="nav-button green">Password Manager</button></a>
+                     <a href="logout.html" style="text-decoration: none;"><button class="nav-button green logout">Logout</button></a>
+                </nav>
+            </aside>
+
+            <section class="form-container">
+                <form class="personal-info-form">
+
+                    <div class="form-group-row">
+                        <div class="form-group">
+                            <label for="first-name">First Name</label>
+                            <input type="text" id="first-name" name="first-name">
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name</label>
+                            <input type="text" id="last-name" name="last-name">
+                        </div>
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="email">E-mail</label>
+                        <input type="email" id="email" name="email">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="phone">Phone</label>
+                        <input type="tel" id="phone" name="phone">
+                    </div>
+
+                    <div class="form-group full-width">
+                        <label for="gender">Gender</label>
+                        <input type="text" id="gender" name="gender">
+                    </div>
+
+                    <button type="submit" class="update-button green">Update Change</button>
+                </form>
+            </section>
+        </main>
+    </div>
+    <footer class="footer">
+    <div class="footer-container">
+
+        <!-- Left Section -->
+        <div class="footer-left">
+            <img src="image/f06d4fb4-1a3e-4229-b142-3185452f8a6a-removebg-preview 1.png" alt="Logo" class="footer-logo">
+            <h2>The Market <span>grocery.com</span></h2>
+            <p class="follow">Follow Us On :</p>
+            <div class="social-icons">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-whatsapp"></i></a>
+            </div>
+            <img src="image/1eac1217-55f9-47c9-b7c1-fb018280bd68 1.png" alt="Woman Shopping" class="footer-image">
+        </div>
+
+        <!-- Center Sections -->
+        <div class="footer-links">
+            <div>
+                <h3>Company</h3>
+                <a href="#">About us</a>
+                <a href="#">Blog</a>
+                <a href="#">Contact us</a>
+                <a href="#">Career</a>
+            </div>
+
+            <div>
+                <h3>Customer service</h3>
+                <a href="#">My Account</a>
+                <a href="#">Track your order</a>
+                <a href="#">Return</a>
+                <a href="#">FAQ</a>
+            </div>
+
+            <div>
+                <h3>Our information</h3>
+                <a href="#">Privacy</a>
+                <a href="#">User terms & Conditions</a>
+                <a href="#">Return Policy</a>
+            </div>
+
+            <div>
+                <h3>Contact info</h3>
+                <p>123-456-789</p>
+                <p>example@gmail.com</p>
+                <p>72, North Street</p>
+                <p>Mumbai - 001</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bottom -->
+    <div class="footer-bottom">
+        <p>© 2025 My Market. All rights reserved.</p>
+        <p><a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a></p>
+    </div>
+</footer>
+
+<script>
+const profile = document.getElementById('profile');
+const dropdown = document.getElementById('profileDropdown');
+const bell = document.getElementById('bell');
+const notification = document.getElementById('notificationBox');
+
+// Toggle dropdown
+profile.addEventListener('click', () => {
+  dropdown.style.display = dropdown.style.display === 'block' ? 'none' : 'block';
+  notification.style.display = 'none';
+});
+
+// Toggle notification box
+bell.addEventListener('click', () => {
+  notification.style.display = notification.style.display === 'block' ? 'none' : 'block';
+  dropdown.style.display = 'none';
+});
+
+// Hide both when clicking outside
+document.addEventListener('click', (e) => {
+  if (!profile.contains(e.target) && !dropdown.contains(e.target) &&
+      !bell.contains(e.target) && !notification.contains(e.target)) {
+    dropdown.style.display = 'none';
+    notification.style.display = 'none';
+  }
+});
+
+</script>
+</body>
+</html>
